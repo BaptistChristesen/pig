@@ -15,10 +15,19 @@ struct ContentView: View {
             Color.gray.opacity(0.7).ignoresSafeArea()
             VStack{
                 Image("Pig").resizable().frame(width: 150, height: 150)
-                Text("Pig")
+                CustomText(text: "Pig")
+                CustomText(text: "Turn Score: \(turnScore)")
+                CustomText(text: "Game Score: \(gameScore)")
+
                 Spacer()
             }
         }
+    }
+}
+struct CustomText: View{
+    let text: String
+    var body: some View{
+        Text(text).font(Font.custom("Marker Felt", size: 36))
     }
 }
 
