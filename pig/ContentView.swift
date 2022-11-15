@@ -27,11 +27,18 @@ struct ContentView: View {
                 CustomText(text: "Turn Score: \(turnScore)")
                 HStack{
                     Button("Roll"){
-                        
+                        chooseRandom(times: 3)
+                        withAnimation(.interpolatingSpring(stiffness: 10, damping: 2)) {
+                            rotation += 360
+                        }
                     }
                     .buttonStyle(CustomButtonStyle())
                     Button("Hold"){
-                        
+                        gameScore += turnScore
+                        endTurn()
+                        withAnimation(.easeInOut(duration: 1)) {
+                            rotation += 360
+                        }
                     }
                     .buttonStyle(CustomButtonStyle())
                 }
@@ -43,7 +50,7 @@ struct ContentView: View {
     }
     func endTurn(){
         turnScore = 0
-        gameScore = 0
+        randomValue = 0
     }
     func chooseRandom(times: Int){
         if times > 0 {
